@@ -32,5 +32,8 @@ export class UserService {
     return this.http.delete(`${this.uri}/logout`, { headers });
   }
 
-
+  borrow(bookId: number){
+    return this.http.post(`${this.uri}/users/borrow/${bookId}`, null);
+  }
+a
 }

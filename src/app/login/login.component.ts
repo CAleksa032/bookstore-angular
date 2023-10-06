@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit{
   password: string;
   message: string;
 
-
   login() {
     this.userService.login(this.username, this.password).pipe(
       catchError((error) => {

@@ -1,0 +1,30 @@
+<body>
+  <h2>Book details</h2>
+  <div *ngIf="!book"> Loading book... </div>
+  <div *ngIf="book">
+    <p>Book title: {{book.bookTitle}}</p>
+    Book authors:
+      <div style="display: inline;" *ngFor="let i of book.authors; let last = last">
+        {{i.authorFirstName}} {{i.authorLastName}}
+        <span *ngIf="!last">, </span>
+      </div>
+    <p></p>
+    Book genres:
+      <div style="display: inline;" *ngFor="let i of book.genres; let last = last">
+        {{i.genreName}}
+        <span *ngIf="!last">, </span>
+      </div>
+    <p>Book publication year: {{book.publicationYear}}</p>
+    <p>Book description: {{book.bookDescription}}</p>
+    <button type="button" (click)="borrow()">Borrow</button>
+  </div>
+  <div>
+    <h2>Update book</h2>
+    <form [formGroup]="form" *ngIf="book">
+      <p>Book title:<input type="text" formControlName="bookTitle"></p>
+      <p>Book description: <textarea formControlName="bookDescription" style="height: 100px; width: 300px;"></textarea></p>
+      <p>Book publication year: <input type="text" formControlName="publicationYear"></p>
+      <p><button (click)="updateBook()">Update</button> </p>
+    </form>
+  </div>
+</body>
