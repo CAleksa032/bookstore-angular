@@ -19,10 +19,13 @@ export class LoginComponent implements OnInit{
   password!: string;
   message!: string;
 
-  login(){
+  /*login(){
     this.userService.login(this.username, this.password).subscribe((userFromDB: User)=>{
 
     })
+  }*/
+  login(){
+
   }
 
 

@@ -1,1 +1,18 @@
-<p>user works!</p>
+<body>
+<header>
+  <div class="search-container">
+    <form (submit)="search()">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</header>
+  <div class="center" *ngFor="let n of books">
+    {{n.bookTitle}} -
+    <div style="display: inline;" *ngFor="let i of n.authors; let last = last">
+      {{i.authorFirstName}} {{i.authorLastName}}
+      <span *ngIf="!last">, </span>
+    </div>
+    <button type="submit" (click)="bookDetails(n)">Details</button>
+  </div>
+</body>

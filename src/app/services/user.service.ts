@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  uri = 'http://localhost:4000'
+  uri = 'http://localhost:5000'
 
 
   login(usernameFromForm: string, passwordFromForm: string){
@@ -18,5 +18,9 @@ export class UserService {
     }
 
     return this.http.post(`${this.uri}/users/login`, data)
+  }
+
+  borrow(bookId: number){
+    return this.http.post(`${this.uri}/users/borrow/${bookId}`, null);
   }
 }
