@@ -10,6 +10,7 @@ import { LibrarianComponent } from './librarian/librarian.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     LibrarianComponent,
     AdminComponent,
     RegisterComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

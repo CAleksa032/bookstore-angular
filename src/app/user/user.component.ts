@@ -16,10 +16,13 @@ export class UserComponent implements OnInit{
   constructor(private userService: UserService, private router: Router, private bookService: BookService) {
   }
   ngOnInit(): void {
-
+    this.bookService.searchBooks('').subscribe((books: Book[]) => {
+      this.bookOfTheDay = books[(new Date().getFullYear() + new Date().getMonth() + new Date().getDay()) % books.length]
+    })
   }
   searchTerm: string = ''
   books: Book[]
+  bookOfTheDay: Book
 
   search(){
     this.bookService.searchBooks(this.searchTerm).subscribe((booksFromDB: Book[]) => {
@@ -29,6 +32,10 @@ export class UserComponent implements OnInit{
 
   bookDetails(book){
     this.router.navigate(['bookDetails', {param: book.bookTitle}]);
+  }
+
+  changePassword(){
+    this.router.navigate(['changePassword']);
   }
 
   logout(): void{

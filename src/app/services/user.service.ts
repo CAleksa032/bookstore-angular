@@ -33,7 +33,19 @@ export class UserService {
   }
 
   borrow(bookId: number){
-    return this.http.post(`${this.uri}/users/borrow/${bookId}`, null);
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    return this.http.post(`${this.uri}/users/borrow/${bookId}`, { headers });
   }
-a
+
+  changePassword(oldPassword: string, newPassword: string){
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    const data = {
+      oldPassword: oldPassword,
+      password: newPassword
+    }
+    return this.http.patch(`${this.uri}/users/password`, data, { headers })
+  }
+
 }

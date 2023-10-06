@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit{
         if (response) {
           const accessToken = response['access_token'];
           const refreshToken = response['refresh_token'];
-          console.log(accessToken)
           // Store tokens in session storage
           sessionStorage.setItem('access_token', accessToken);
           sessionStorage.setItem('refresh_token', refreshToken);

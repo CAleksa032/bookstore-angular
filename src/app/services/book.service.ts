@@ -12,8 +12,10 @@ export class BookService {
 
   searchBooks(searchParam: string) {
     const params = new HttpParams().set('book_name', searchParam);
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
 
-    return this.http.get(`${this.uri}/books/`, { params: params });
+    return this.http.get(`${this.uri}/books/`, { headers, params: params });
   }
 
   updateBook(bookId: number, bookTitleFromForm: string, bookDescriptionFromForm: string,
@@ -23,6 +25,9 @@ export class BookService {
       bookDescription: bookDescriptionFromForm,
       publicationYear: publicationYearFromForm
     }
-    return this.http.patch(`${this.uri}/books/${bookId}`, data);
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+
+    return this.http.patch(`${this.uri}/books/${bookId}`, data, { headers });
   }
 }

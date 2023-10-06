@@ -1,4 +1,5 @@
 <body>
+  <button (click)="returnBack()">Home page</button>
   <h2>Book details</h2>
   <div *ngIf="!book"> Loading book... </div>
   <div *ngIf="book">
@@ -14,11 +15,11 @@
         {{i.genreName}}
         <span *ngIf="!last">, </span>
       </div>
-    <p>Book publication year: {{book.publicationYear}}</p>
+    <p>Book publication year: {{book.publicationYear}}.</p>
     <p>Book description: {{book.bookDescription}}</p>
     <button type="button" (click)="borrow()">Borrow</button>
   </div>
-  <div>
+  <div *ngIf="userRole != 'user'">
     <h2>Update book</h2>
     <form [formGroup]="form" *ngIf="book">
       <p>Book title:<input type="text" formControlName="bookTitle"></p>
