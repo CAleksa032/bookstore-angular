@@ -25,6 +25,12 @@ export class UserService {
     return this.http.get(`${this.uri}/role`, { headers });
   }
 
+  fetchUserId(){
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.uri}/id`, { headers });
+  }
+
   logout() {
     let accessToken= sessionStorage.getItem('access_token')
     sessionStorage.clear();
@@ -48,4 +54,15 @@ export class UserService {
     return this.http.patch(`${this.uri}/users/password`, data, { headers })
   }
 
+  userHistory(userId: number){
+    let accessToken= sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.uri}/users/user/${userId}`, { headers });
+  }
+
+  allUsers() {
+    let accessToken= sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.get(`${this.uri}/users/all`, { headers});
+  }
 }

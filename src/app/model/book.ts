@@ -8,4 +8,5 @@ export class Book {
   publicationYear: string;
   authors: Array<Author>;
   genres: Array<Genre>;
+  userId: number;
 }

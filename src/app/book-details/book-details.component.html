@@ -19,7 +19,7 @@
     <p>Book description: {{book.bookDescription}}</p>
     <button type="button" (click)="borrow()">Borrow</button>
   </div>
-  <div *ngIf="userRole != 'user'">
+  <div *ngIf="userRole != 'user' && ok == true">
     <h2>Update book</h2>
     <form [formGroup]="form" *ngIf="book">
       <p>Book title:<input type="text" formControlName="bookTitle"></p>

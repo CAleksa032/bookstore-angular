@@ -19,10 +19,12 @@ export class UserComponent implements OnInit{
     this.bookService.searchBooks('').subscribe((books: Book[]) => {
       this.bookOfTheDay = books[(new Date().getFullYear() + new Date().getMonth() + new Date().getDay()) % books.length]
     })
+    this.userRole = sessionStorage.getItem('role');
   }
   searchTerm: string = ''
   books: Book[]
   bookOfTheDay: Book
+  userRole: string
 
   search(){
     this.bookService.searchBooks(this.searchTerm).subscribe((booksFromDB: Book[]) => {
@@ -36,6 +38,10 @@ export class UserComponent implements OnInit{
 
   changePassword(){
     this.router.navigate(['changePassword']);
+  }
+
+  borrowHistory(){
+    this.router.navigate(['userBorrowHistory']);
   }
 
   logout(): void{

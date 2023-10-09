@@ -27,12 +27,22 @@ export class BookDetailsComponent implements OnInit{
       })
     })
     this.userRole = sessionStorage.getItem('role');
+    if (this.userRole == 'librarian') {
+      this.userService.fetchUserId().subscribe((idResponse) => {
+        this.id = idResponse['id'];
+      })
+      if (this.book.userId != this.id) {
+        this.ok = false;
+      }
+    }
   }
 
   title: string
   book: Book
   form: FormGroup
   userRole: string
+  id: number
+  ok: boolean = true
 
   borrow(){
     this.userService.borrow(this.book.bookId).subscribe((borrowedBook: Book) => {
@@ -52,9 +62,9 @@ export class BookDetailsComponent implements OnInit{
     if (userRole === 'user') {
       this.router.navigate(["/user"]);
     } else if (userRole === 'admin') {
-      this.router.navigate(["/admin"]);
+      this.router.navigate(["/user"]);
     } else {
-      this.router.navigate(["/librarian"]);
+      this.router.navigate(["/user"]);
     }
   }
 

@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit{
               sessionStorage.setItem('role', userRole)
               // Redirect based on user role
               if (userRole === 'admin') {
-                this.router.navigate(['/admin']);
+                this.router.navigate(['/user']);
               } else if (userRole === 'librarian') {
-                this.router.navigate(['/librarian']);
+                this.router.navigate(['/user']);
               } else {
                 this.router.navigate(['/user']);
               }

@@ -1,0 +1,3 @@
+.bordered-table th, .bordered-table td {
+    border: 3px solid #ccc; /* Dodajte liniju oko svake ćelije */
+}
