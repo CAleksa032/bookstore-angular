@@ -10,6 +10,8 @@ import {ChangePasswordComponent} from "./change-password/change-password.compone
 import {UserBorrowHistoryComponent} from "./user-borrow-history/user-borrow-history.component";
 import {ReturnBooksComponent} from "./return-books/return-books.component";
 import {AddBookComponent} from "./add-book/add-book.component";
+import {RegisterComponent} from "./register/register.component";
+
 
 const routes: Routes = [
   {path: "", component: LoginComponent, canActivate: [authGuard], data: {requiredRole: 'not_logged'}},
@@ -24,7 +26,9 @@ const routes: Routes = [
   {path: "userBorrowHistory", component: UserBorrowHistoryComponent, canActivate: [authGuard],
     data: {requiredRole: ['user', 'librarian', 'admin']}},
   {path: "returnBooks", component: ReturnBooksComponent, canActivate: [authGuard], data: {requiredRole: 'librarian'}},
-  {path: "addBook", component: AddBookComponent, canActivate: [authGuard], data: {requiredRole: ['admin', 'librarian']}}
+  {path: "addBook", component: AddBookComponent, canActivate: [authGuard], data: {requiredRole: ['admin', 'librarian']}},
+  {path: "register", component: RegisterComponent, canActivate: [authGuard],
+    data: {requiredRole: ['not_logged', 'admin']}}
 ];
 
 @NgModule({

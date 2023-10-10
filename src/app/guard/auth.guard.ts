@@ -3,7 +3,7 @@ import {CanActivateFn, Router} from '@angular/router';
 export const authGuard: CanActivateFn = (route, state) => {
   const router: Router = new Router();
   let required_role = route.data['requiredRole']
-  if(required_role == 'not_logged' && sessionStorage.length == 0){
+  if(required_role.includes('not_logged') && sessionStorage.length == 0){
     return true;
   }
   if(sessionStorage.length != 0){
