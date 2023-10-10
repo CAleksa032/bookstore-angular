@@ -1,5 +1,5 @@
 export class BorrowedBook {
-    id: number;
+    borrowedBookId: number;
     userId: number;
     copyId: number;
     borrowDate: Date;

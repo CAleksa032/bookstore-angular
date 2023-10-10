@@ -1,0 +1,44 @@
+<h2>Add book</h2>
+<form [formGroup]="form">
+    <table>
+        <tbody>
+        <tr>
+            <td>Book title</td>
+            <td><input type="text" formControlName="bookTitle" name="title" required></td>
+        </tr>
+        <tr>
+            <td>Book description</td>
+            <td><input type="text" formControlName="bookDescription" required></td>
+        </tr>
+        <tr>
+            <td>Publication year</td>
+            <td><input type="text" formControlName="publicationYear"></td>
+        </tr>
+        <tr>
+            <td>Authors</td>
+            <td>
+                <select formControlName="bookAuthors" multiple required>
+                    <option *ngFor="let author of authors" [value]="author.authorId">
+                        {{author.authorFirstName}} {{author.authorLastName}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Genres</td>
+            <td>
+                <select formControlName="bookGenres" multiple required>
+                    <option *ngFor="let genre of genres" [value]="genre.genreId">
+                        {{genre.genreName}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button (click)="addBook()">Add book</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

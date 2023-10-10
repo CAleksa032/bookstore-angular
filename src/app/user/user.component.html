@@ -1,8 +1,10 @@
 <body>
 <header>
   <div class="search-container">
-    <button (click)="changePassword()">Change password</button>
+    <button *ngIf="userRole != 'admin'" (click)="changePassword()">Change password</button>
+    <button *ngIf="userRole != 'user'" (click)="addBook()">Add book</button>
     <button (click)="borrowHistory()">Borrow history</button>
+    <button *ngIf="userRole == 'librarian'" (click)="returnBooks()">Return books</button>
     <form>
       <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
       <button (click)="search()">Search</button>

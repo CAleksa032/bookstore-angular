@@ -19,7 +19,6 @@ export class BookDetailsComponent implements OnInit{
     this.title = this.route.snapshot.paramMap.get('param');
     this.bookService.searchBooks(this.title).subscribe((bookFromDB: Book[]) => {
       this.book = bookFromDB[0];
-      console.log(this.book);
       this.form = new FormGroup({
         bookTitle: new FormControl(this.book.bookTitle),
         bookDescription: new FormControl(this.book.bookDescription),

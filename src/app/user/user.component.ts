@@ -44,6 +44,14 @@ export class UserComponent implements OnInit{
     this.router.navigate(['userBorrowHistory']);
   }
 
+  returnBooks(){
+    this.router.navigate(['returnBooks']);
+  }
+
+  addBook(){
+    this.router.navigate(['addBook']);
+  }
+
   logout(): void{
     this.userService.logout()
     this.router.navigate(['/'])

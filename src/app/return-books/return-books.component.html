@@ -1,0 +1,51 @@
+<div *ngIf="userRole == 'librarian'" class="bordered-table">
+    <table>
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Blocked</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let n of users">
+            <td>{{n.username}}</td>
+            <td>{{n.email}}</td>
+            <td>{{n.blocked}}</td>
+            <td><button (click)="pickedUserBooks(n.id)">User's borrows</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="userRole == 'librarian' && picked == true" class="bordered-table">
+    <div *ngIf="borrowedBooks.length != 0">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>User id</th>
+                <th>Copy id</th>
+                <th>Borrow date</th>
+                <th>Return date</th>
+                <th>Return</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let n of borrowedBooks">
+                <td>{{n.borrowedBookId}}</td>
+                <td>{{n.userId}}</td>
+                <td>{{n.copyId}}</td>
+                <td>{{n.borrowDate}}</td>
+                <td>{{n.returnDate}}</td>
+                <td>
+                    <input type="checkbox" [(ngModel)]="selectedBooks[n.borrowedBookId]">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button (click)="returnSelectedBooks()">Return books</button>
+    </div>
+    <div *ngIf="borrowedBooks.length == 0">
+        <h4> This user doesn't have any borrowed books!</h4>
+    </div>
+</div>

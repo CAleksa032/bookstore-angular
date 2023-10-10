@@ -30,4 +30,34 @@ export class BookService {
 
     return this.http.patch(`${this.uri}/books/${bookId}`, data, { headers });
   }
+
+  allAuthors(){
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    return this.http.get(`${this.uri}/authors/`, { headers });
+  }
+
+  allGenres(){
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+    return this.http.get(`${this.uri}/genres/`, { headers });
+  }
+
+  addBook(title: string, authors: number[], year: string, description: string, genres: number[]){
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
+
+    const authorIdArray = Array.isArray(authors) ? authors : [authors];
+    const genreIdArray = Array.isArray(genres) ? genres : [genres];
+
+    const data = {
+      bookTitle: title,
+      bookDescription: description,
+      publicationYear: year,
+      authors: authorIdArray.map(id => ({ authorId: id })),
+      genres: genreIdArray.map(id => ({genreId: id}))
+    }
+    return this.http.post(`${this.uri}/books/`, data, { headers });
+  }
+
 }
