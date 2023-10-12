@@ -1,44 +1,48 @@
-<body>
-<header>
-  <div class="search-container">
-    <button *ngIf="userRole == 'admin'" (click)="register()">Register librarian</button>
-    <button *ngIf="userRole != 'admin'" (click)="changePassword()">Change password</button>
-    <button *ngIf="userRole != 'user'" (click)="addBook()">Add book</button>
-    <button (click)="borrowHistory()">Borrow history</button>
-    <button *ngIf="userRole == 'librarian'" (click)="returnBooks()">Return books</button>
-    <button *ngIf="userRole == 'librarian'" (click)="statistic()">Statistic</button>
-    <form>
-      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
-      <button (click)="search()">Search</button>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" href="#page-top">Bookstore</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <form (submit)="search()" class="d-flex">
+      <input class="form-control me-2" type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+      <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <button (click)="logout()">Log out</button>
-  </div>
-</header>
-  <div class="center" *ngFor="let n of books">
-    {{n.bookTitle}} -
-    <div style="display: inline;" *ngFor="let i of n.authors; let last = last">
-      {{i.authorFirstName}} {{i.authorLastName}}
-      <span *ngIf="!last">, </span>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="logout()">Log out</a></li>
+      </ul>
     </div>
-    <button type="submit" (click)="bookDetails(n)">Details</button>
   </div>
-  <div class="center" *ngIf="bookOfTheDay">
-    <h2>Book of the day:</h2>
-    <p>{{bookOfTheDay.bookTitle}}</p>
-    Authors:
-    <div style="display: inline;" *ngFor="let i of bookOfTheDay.authors; let last = last">
-      {{i.authorFirstName}} {{i.authorLastName}}
-      <span *ngIf="!last">, </span>
-    </div>
-    <p></p>
-    Genres:
-    <div style="display: inline;" *ngFor="let i of bookOfTheDay.genres; let last = last">
-      {{i.genreName}}
-      <span *ngIf="!last">, </span>
-    </div>
-    <p>{{bookOfTheDay.bookDescription}}</p>
-    <p>{{bookOfTheDay.publicationYear}}.</p>
-    <button type="submit" (click)="bookDetails(bookOfTheDay)">Details</button>
-  </div>
-</body>
+</nav>
 
+<div class="row">
+  <div class="col">
+    <div class="center" *ngFor="let n of books">
+      {{n.bookTitle}} -
+      <div style="display: inline;" *ngFor="let i of n.authors; let last = last">
+        {{i.authorFirstName}} {{i.authorLastName}}
+        <span *ngIf="!last">, </span>
+      </div>
+      <button class="btn btn-info" (click)="bookDetails(n)">Details</button>
+    </div>
+  </div>
+</div>
+
+<div class="center" *ngIf="bookOfTheDay">
+  <h2>Book of the day:</h2>
+  <p>{{bookOfTheDay.bookTitle}}</p>
+  Authors:
+  <div style="display: inline;" *ngFor="let i of bookOfTheDay.authors; let last = last">
+    {{i.authorFirstName}} {{i.authorLastName}}
+    <span *ngIf="!last">, </span>
+  </div>
+  <p></p>
+  Genres:
+  <div style="display: inline;" *ngFor="let i of bookOfTheDay.genres; let last = last">
+    {{i.genreName}}
+    <span *ngIf="!last">, </span>
+  </div>
+  <p>{{bookOfTheDay.bookDescription}}</p>
+  <p>{{bookOfTheDay.publicationYear}}.</p>
+  <button type="submit" (click)="bookDetails(bookOfTheDay)" class="btn btn-info">Details</button>
+</div>

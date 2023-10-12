@@ -10,11 +10,12 @@ import {UserService} from "../services/user.service";
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.css']
 })
-export class BookDetailsComponent implements OnInit{
+export class BookDetailsComponent implements OnInit {
 
-  constructor( private route: ActivatedRoute, private bookService: BookService, private userService: UserService,
-               private router: Router) {
+  constructor(private route: ActivatedRoute, private bookService: BookService, private userService: UserService,
+              private router: Router) {
   }
+
   ngOnInit(): void {
     this.title = this.route.snapshot.paramMap.get('param');
     this.userRole = sessionStorage.getItem('role');
@@ -36,7 +37,7 @@ export class BookDetailsComponent implements OnInit{
         })
       }
     })
-    if (this.userRole == 'admin'){
+    if (this.userRole == 'admin') {
       this.ok = true;
     }
   }
@@ -48,20 +49,20 @@ export class BookDetailsComponent implements OnInit{
   id: number
   ok: boolean = false
 
-  borrow(){
+  borrow() {
     this.userService.borrow(this.book.bookId).subscribe((borrowedBook: Book) => {
       alert("Successfully borrowed book")
     })
   }
 
-  updateBook(){
+  updateBook() {
     this.bookService.updateBook(this.book.bookId, this.form.value.bookTitle,
-        this.form.value.bookDescription, this.form.value.publicationYear).subscribe((updatedBook: Book) => {
+      this.form.value.bookDescription, this.form.value.publicationYear).subscribe((updatedBook: Book) => {
 
     })
   }
 
-  returnBack(){
+  returnBack() {
     const userRole = sessionStorage.getItem('role');
     if (userRole === 'user') {
       this.router.navigate(["/user"]);
@@ -72,4 +73,7 @@ export class BookDetailsComponent implements OnInit{
     }
   }
 
+  logout() {
+    this.userService.logout()
+  }
 }

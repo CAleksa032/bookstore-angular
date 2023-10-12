@@ -85,6 +85,7 @@ export class UserService {
     const data = idArray.map(id => ({ bookId: id }));
 
     return this.http.patch(`${this.uri}/users/librarian/${userId}`, data, { headers });
+
   }
 
   registerUser(username, password, email){

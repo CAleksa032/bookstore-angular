@@ -14,7 +14,6 @@ export class BookService {
     const params = new HttpParams().set('book_name', searchParam);
     let accessToken= sessionStorage.getItem('access_token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
-
     return this.http.get(`${this.uri}/books/`, { headers, params: params });
   }
 
@@ -25,6 +24,7 @@ export class BookService {
       bookDescription: bookDescriptionFromForm,
       publicationYear: publicationYearFromForm
     }
+
     let accessToken= sessionStorage.getItem('access_token')
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`)
 
