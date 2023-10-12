@@ -35,7 +35,9 @@ export class UserService {
   }
 
   borrow(bookId: number){
-    return this.http.post(`${this.uri}/users/borrow/${bookId}`, null);
+    let accessToken= sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    return this.http.post(`${this.uri}/users/borrow/${bookId}`,null, {headers});
   }
 
   registerUser(username, password, email){

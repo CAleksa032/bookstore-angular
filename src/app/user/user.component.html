@@ -1,20 +1,30 @@
 <body>
-<header>
-  <div class="search-container">
-    <form (submit)="search()">
-      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
-      <button type="submit">Search</button>
-    </form>
-    <button (click)="logout()">Log out</button>
-  </div>
-</header>
-  <div class="center" *ngFor="let n of books">
-    {{n.bookTitle}} -
-    <div style="display: inline;" *ngFor="let i of n.authors; let last = last">
-      {{i.authorFirstName}} {{i.authorLastName}}
-      <span *ngIf="!last">, </span>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" href="#page-top">Bookstore</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <form (submit)="search()" class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search..." [(ngModel)]="searchTerm" name="searchTerm">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" (click)="logout()">Log out</a></li>
+      </ul>
     </div>
-    <button type="submit" (click)="bookDetails(n)">Details</button>
+  </div>
+</nav>
+  <div class="row">
+    <div class="col">
+      <div class="center" *ngFor="let n of books">
+        {{n.bookTitle}} -
+        <div style="display: inline;" *ngFor="let i of n.authors; let last = last">
+          {{i.authorFirstName}} {{i.authorLastName}}
+          <span *ngIf="!last">, </span>
+        </div>
+        <button class="btn btn-info" (click)="bookDetails(n)">Details</button>
+      </div>
+    </div>
   </div>
 </body>
-

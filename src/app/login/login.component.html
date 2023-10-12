@@ -1,23 +1,27 @@
-<table>
-  <tr>
-    <td>Username:</td>
-    <td>
-      <input type="text" name="username" [(ngModel)]="username">
-    </td>
-  </tr>
-  <tr>
-    <td>Password:</td>
-    <td>
-      <input type="password" name="password" [(ngModel)]="password">
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <button (click)="login()">LogIn</button>
-    </td>
-  </tr>
-</table>
-<div>
-  Don't have an account? Click to <a routerLink="/register">register</a>.
-</div>
-{{message}}
+<section class="page-section" id="login">
+  <div class="container px-4 px-lg-5 h-100">
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-6">
+        <h1 class="text-white font-weight-bold">Please login here</h1>
+        <hr class="divider" />
+        <form>
+          <div class="mb-3">
+            <label for="username" class="form-label text-white">Username:</label>
+            <input class="form-control" type="text" id="username" name="username" [(ngModel)]="username">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label text-white">Password:</label>
+            <input class="form-control" type="password" id="password" name="password" [(ngModel)]="password">
+          </div>
+          <button class="btn btn-primary" (click)="login()">LogIn</button>
+        </form>
+        <div class="text-info">
+          Don't have an account? Click to <a routerLink="/register">register</a>.
+        </div>
+        <div class="text-center text-danger mb-3">
+        {{ message }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
