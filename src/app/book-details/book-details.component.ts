@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit{
   }
   ngOnInit(): void {
     this.title = this.route.snapshot.paramMap.get('param');
+    this.userRole = sessionStorage.getItem('role');
     this.bookService.searchBooks(this.title).subscribe((bookFromDB: Book[]) => {
       this.book = bookFromDB[0];
       this.form = new FormGroup({
@@ -24,15 +25,19 @@ export class BookDetailsComponent implements OnInit{
         bookDescription: new FormControl(this.book.bookDescription),
         publicationYear: new FormControl(this.book.publicationYear)
       })
-    })
-    this.userRole = sessionStorage.getItem('role');
-    if (this.userRole == 'librarian') {
-      this.userService.fetchUserId().subscribe((idResponse) => {
-        this.id = idResponse['id'];
-      })
-      if (this.book.userId != this.id) {
-        this.ok = false;
+      if (this.userRole == 'librarian') {
+        this.userService.fetchUserId().subscribe((idResponse) => {
+          this.id = idResponse['id'];
+          if (this.book.userId != this.id) {
+            this.ok = false;
+          } else {
+            this.ok = true;
+          }
+        })
       }
+    })
+    if (this.userRole == 'admin'){
+      this.ok = true;
     }
   }
 
@@ -41,7 +46,7 @@ export class BookDetailsComponent implements OnInit{
   form: FormGroup
   userRole: string
   id: number
-  ok: boolean = true
+  ok: boolean = false
 
   borrow(){
     this.userService.borrow(this.book.bookId).subscribe((borrowedBook: Book) => {

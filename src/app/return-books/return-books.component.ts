@@ -26,6 +26,7 @@ export class ReturnBooksComponent implements OnInit {
   selectedBooks: { [id: number]: boolean } = {};
 
   pickedUserBooks(id: number){
+    this.selectedBooks= {}
     this.userService.borrowedBooks(id).subscribe((borrowedBooks: BorrowedBook[]) => {
       this.borrowedBooks = borrowedBooks;
       this.picked = true;

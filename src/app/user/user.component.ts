@@ -52,8 +52,15 @@ export class UserComponent implements OnInit{
     this.router.navigate(['addBook']);
   }
 
+  statistic(){
+    this.router.navigate(['statistic']);
+  }
   logout(): void{
     this.userService.logout()
     this.router.navigate(['/'])
+  }
+
+  register() {
+    this.router.navigate(['register'])
   }
 }

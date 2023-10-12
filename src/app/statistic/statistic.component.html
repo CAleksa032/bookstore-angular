@@ -1,0 +1,55 @@
+<h4>Statistic</h4>
+<div>
+  <button (click)="bookStats()" style="margin-right: 50px">Book statistic</button>
+  <button (click)="authorStats()" style="margin-right: 50px">Author statistic</button>
+  <button (click)="genreStats()">Genre statistic</button>
+</div>
+
+<div *ngIf="bookFlag">
+  <table>
+    <tr>
+      <th> Title </th>
+      <th> Publication year </th>
+    </tr>
+    <tr *ngFor="let n of books">
+      <td> {{n.bookTitle}} </td>
+      <td> {{n.publicationYear}} </td>
+      <td> <button (click)="pickedBook(n.bookId)">Average age of users</button> </td>
+    </tr>
+  </table>
+  <p *ngIf="pickedBookFlag"><b>
+    The average age of users who borrow this book is {{averageYearsBook}}
+  </b></p>
+</div>
+
+<div *ngIf="authorFlag">
+  <table>
+    <tr>
+      <th> First name </th>
+      <th> Last name </th>
+    </tr>
+    <tr *ngFor="let n of authors">
+      <td> {{n.authorFirstName}} </td>
+      <td> {{n.authorLastName}} </td>
+      <td> <button (click)="pickedAuthor(n.authorId)">Average age of users</button> </td>
+    </tr>
+  </table>
+  <p *ngIf="pickedAuthorFlag"><b>
+    The average age of users who borrow books by this author is {{averageYearsAuthor}}
+  </b></p>
+</div>
+
+<div *ngIf="genreFlag">
+  <table>
+    <tr>
+      <th> Name </th>
+    </tr>
+    <tr *ngFor="let n of genres">
+      <td> {{n.genreName}} </td>
+      <td> <button (click)="pickedGenre(n.genreId)">Average age of users</button> </td>
+    </tr>
+  </table>
+  <p *ngIf="pickedGenreFlag"><b>
+    The average age of users who borrow books by this genre is {{averageYearsGenre}}
+  </b></p>
+</div>

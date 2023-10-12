@@ -27,7 +27,8 @@
   <button type="submit" [disabled]="!isFormValid()" class="btn btn-primary w-100">Register</button>
 </form>
 
-
+<div *ngIf="userRole != 'admin'">
   Already have an account? You can login <a routerLink="/">here.</a>
+</div>
   <br/>
   {{ message }}

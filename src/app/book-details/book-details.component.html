@@ -17,7 +17,7 @@
       </div>
     <p>Book publication year: {{book.publicationYear}}.</p>
     <p>Book description: {{book.bookDescription}}</p>
-    <button type="button" (click)="borrow()">Borrow</button>
+    <button *ngIf="userRole == 'user'" type="button" (click)="borrow()">Borrow</button>
   </div>
   <div *ngIf="userRole != 'user' && ok == true">
     <h2>Update book</h2>

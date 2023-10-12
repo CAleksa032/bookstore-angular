@@ -10,9 +10,11 @@ import {NgForm} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit{
   ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('role')
   }
   constructor(private userService: UserService,  private router: Router) {}
 
+  userRole: string
 
   username: string;
   password: string;
@@ -46,7 +48,7 @@ export class RegisterComponent implements OnInit{
       this.userService.registerLibrarian(this.username, this.password, this.email).subscribe( (respObj) =>{
           console.log(respObj)
           alert('Librarian added. Redirecting to home page')
-          this.router.navigate(['/admin'])
+          this.router.navigate(['/user'])
         }, (error) =>{
           console.log(error)
           if (error.status == 409) {

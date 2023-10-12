@@ -14,6 +14,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { UserBorrowHistoryComponent } from './user-borrow-history/user-borrow-history.component';
 import { ReturnBooksComponent } from './return-books/return-books.component';
 import { AddBookComponent } from './add-book/add-book.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddBookComponent } from './add-book/add-book.component';
     ChangePasswordComponent,
     UserBorrowHistoryComponent,
     ReturnBooksComponent,
-    AddBookComponent
+    AddBookComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,

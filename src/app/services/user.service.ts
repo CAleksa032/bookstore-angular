@@ -81,10 +81,7 @@ export class UserService {
     let accessToken= sessionStorage.getItem('access_token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
 
-    // Proverite da li je ids niz, ako nije, pretvorite ga u niz
     const idArray = Array.isArray(ids) ? ids : [ids];
-
-    // Kreirajte niz objekata sa ključem 'bookId'
     const data = idArray.map(id => ({ bookId: id }));
 
     return this.http.patch(`${this.uri}/users/librarian/${userId}`, data, { headers });
@@ -109,5 +106,27 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
 
     return this.http.post(`${this.uri}/users/register`, registerData,{headers});
+  }
+
+  bookStats(bookId: number){
+    let accessToken= sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    const params = new HttpParams().set('bookId', bookId);
+
+    return this.http.get(`${this.uri}/users/books`, {headers, params});
+  }
+
+  authorStats(authorId: number){
+    let accessToken= sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+
+    return this.http.get(`${this.uri}/users/authors/${authorId}`, { headers });
+  }
+
+  genreStats(genreId: number){
+    let accessToken= sessionStorage.getItem('access_token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+
+    return this.http.get(`${this.uri}/users/genres/${genreId}`, { headers });
   }
 }

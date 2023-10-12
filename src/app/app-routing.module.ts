@@ -11,6 +11,7 @@ import {UserBorrowHistoryComponent} from "./user-borrow-history/user-borrow-hist
 import {ReturnBooksComponent} from "./return-books/return-books.component";
 import {AddBookComponent} from "./add-book/add-book.component";
 import {RegisterComponent} from "./register/register.component";
+import {StatisticComponent} from "./statistic/statistic.component";
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: "returnBooks", component: ReturnBooksComponent, canActivate: [authGuard], data: {requiredRole: 'librarian'}},
   {path: "addBook", component: AddBookComponent, canActivate: [authGuard], data: {requiredRole: ['admin', 'librarian']}},
   {path: "register", component: RegisterComponent, canActivate: [authGuard],
-    data: {requiredRole: ['not_logged', 'admin']}}
+    data: {requiredRole: ['not_logged', 'admin']}},
+  {path: "statistic", component: StatisticComponent, canActivate: [authGuard], data: {requiredRole: 'librarian'}}
 ];
 
 @NgModule({
