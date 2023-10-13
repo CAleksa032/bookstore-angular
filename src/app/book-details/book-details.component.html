@@ -11,35 +11,38 @@
   </div>
 </nav>
 
-<body>
-<button (click)="returnBack()">Home page</button>
-<h2 class="header">Book details</h2>
-<div *ngIf="!book" class="loading">Loading book...</div>
-<div *ngIf="book" class="book-details">
-  <p><strong>Book title:</strong> {{book.bookTitle}}</p>
-  <p><strong>Book authors:</strong>
-  <div style="display: inline;" *ngFor="let i of book.authors; let last = last">
-    {{i.authorFirstName}} {{i.authorLastName}}
-    <span *ngIf="!last">, </span>
-  </div>
+<div class="center bg-body bg-opacity-50">
+  <h2 class="header">Book details</h2>
+  <div *ngIf="!book" class="loading">Loading book...</div>
+  <div *ngIf="book" class="book-details">
+    <p><strong>Book title:</strong> {{book.bookTitle}}</p>
+    <p><strong>Book authors:</strong>
+    <div style="display: inline;" *ngFor="let i of book.authors; let last = last">
+      {{i.authorFirstName}} {{i.authorLastName}}
+      <span *ngIf="!last">, </span>
+    </div>
 
-  <p><strong>Book genres:</strong>
-  <div style="display: inline;" *ngFor="let i of book.genres; let last = last">
-    {{i.genreName}}
-    <span *ngIf="!last">, </span>
-  </div>
+    <p><strong>Book genres:</strong>
+    <div style="display: inline;" *ngFor="let i of book.genres; let last = last">
+      {{i.genreName}}
+      <span *ngIf="!last">, </span>
+    </div>
 
-  <p><strong>Book publication year:</strong> {{book.publicationYear}}</p>
-  <p><strong>Book description:</strong> {{book.bookDescription}}</p>
-  <button *ngIf="userRole == 'user'" type="button" (click)="borrow()" class="borrow-button">Borrow</button>
+    <p><strong>Book publication year:</strong> {{book.publicationYear}}</p>
+    <p><strong>Book description:</strong> {{book.bookDescription}}</p>
+    <button *ngIf="userRole == 'user'" type="button" (click)="borrow()" class="btn btn-info">Borrow</button>
+  </div>
 </div>
-<div *ngIf="userRole != 'user' && ok == true">
+
+
+<br/>
+<br/>
+<div *ngIf="userRole != 'user' && ok == true" class="form-control">
   <h2 class="header">Update book</h2>
-  <form [formGroup]="form" *ngIf="book" class="update-form">
-    <p><strong>Book title:</strong><input type="text" formControlName="bookTitle" class="update-input"></p>
-    <p><strong>Book description:</strong> <textarea formControlName="bookDescription" style="height: 100px; width: 300px;" class="update-textarea"></textarea></p>
-    <p><strong>Book publication year:</strong> <input type="text" formControlName="publicationYear" class="update-input"></p>
-    <p><button (click)="updateBook()" class="update-button">Update</button> </p>
+  <form [formGroup]="form" *ngIf="book">
+    <p><strong><label class="form-label">Book title:</label></strong><input type="text" formControlName="bookTitle" class="form-control"></p>
+    <p><strong><label class="form-label form-check-label">Book description:</label></strong> <textarea formControlName="bookDescription" style="height: 100px; width: 300px;" class="form-control form-control-sm"></textarea></p>
+    <p><strong><label class="form-label">Book publication year:</label></strong> <input type="text" formControlName="publicationYear" class="form-control"></p>
+    <p><button (click)="updateBook()" class="btn btn-primary">Update</button> </p>
   </form>
 </div>
-</body>
