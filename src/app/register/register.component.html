@@ -1,4 +1,5 @@
-<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+<h1 class="text-white font-weight-bold">Register</h1>
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" class="form-control">
 
     <label for="username" class="form-label">Username:</label>
     <input type="text" id="username" name="username" required [(ngModel)]="username" class="form-control">
@@ -26,8 +27,8 @@
     <br/>
   <button type="submit" [disabled]="!isFormValid()" class="btn btn-primary w-100">Register</button>
 </form>
-
-<div *ngIf="userRole != 'admin'">
+<br/>
+<div *ngIf="userRole != 'admin'" class="text-info">
   Already have an account? You can login <a routerLink="/">here.</a>
 </div>
   <br/>
