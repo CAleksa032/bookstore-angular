@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {User} from "../model/user";
 import {BorrowedBook} from "../model/borrowedBook";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-return-books',
@@ -9,7 +10,7 @@ import {BorrowedBook} from "../model/borrowedBook";
   styleUrls: ['./return-books.component.css']
 })
 export class ReturnBooksComponent implements OnInit {
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit(): void {
     this.userService.allUsers().subscribe((users: User[]) => {
@@ -42,5 +43,10 @@ export class ReturnBooksComponent implements OnInit {
       this.picked = false;
       this.ngOnInit();
     })
+  }
+
+  logout(){
+    this.userService.logout()
+    this.router.navigate(['/'])
   }
 }

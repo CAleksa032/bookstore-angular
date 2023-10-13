@@ -4,6 +4,7 @@ import {BookService} from "../services/book.service";
 import {Book} from "../model/book";
 import {Author} from "../model/author";
 import {Genre} from "../model/genre";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-statistic',
@@ -11,7 +12,7 @@ import {Genre} from "../model/genre";
   styleUrls: ['./statistic.component.css']
 })
 export class StatisticComponent implements OnInit{
-  constructor(private bookService: BookService, private userService: UserService) {
+  constructor(private bookService: BookService, private userService: UserService, private router: Router) {
   }
   ngOnInit(): void {
     this.bookService.searchBooks('').subscribe((books: Book[]) => {
@@ -84,5 +85,10 @@ export class StatisticComponent implements OnInit{
       this.pickedGenreFlag = true;
       this.averageYearsGenre = response.averageYears;
     })
+  }
+
+  logout(){
+    this.userService.logout()
+    this.router.navigate(['/'])
   }
 }

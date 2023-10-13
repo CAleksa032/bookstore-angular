@@ -31,4 +31,9 @@ export class ChangePasswordComponent implements OnInit{
       })
     }
   }
+
+  logout(){
+    this.userService.logout()
+    this.router.navigate(['/'])
+  }
 }

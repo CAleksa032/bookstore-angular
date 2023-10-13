@@ -74,4 +74,8 @@ export class RegisterComponent implements OnInit{
     return !(this.password === this.confirmPassword)
   }
 
+  logout(){
+    this.userService.logout()
+    this.router.navigate(['/'])
+  }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {BorrowedBook} from "../model/borrowedBook";
 import {User} from "../model/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-borrow-history',
@@ -10,7 +11,7 @@ import {User} from "../model/user";
 })
 export class UserBorrowHistoryComponent implements OnInit{
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
   ngOnInit(): void {
     this.userService.fetchUserId().subscribe((idResponse) => {
@@ -39,5 +40,10 @@ export class UserBorrowHistoryComponent implements OnInit{
       this.borrowedBooks = borrowedBooksFromDB;
       this.picked = true;
     })
+  }
+
+  logout(){
+    this.userService.logout()
+    this.router.navigate(['/'])
   }
 }

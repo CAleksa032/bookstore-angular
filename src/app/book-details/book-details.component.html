@@ -33,7 +33,7 @@
   <p><strong>Book description:</strong> {{book.bookDescription}}</p>
   <button *ngIf="userRole == 'user'" type="button" (click)="borrow()" class="borrow-button">Borrow</button>
 </div>
-<div>
+<div *ngIf="userRole != 'user' && ok == true">
   <h2 class="header">Update book</h2>
   <form [formGroup]="form" *ngIf="book" class="update-form">
     <p><strong>Book title:</strong><input type="text" formControlName="bookTitle" class="update-input"></p>

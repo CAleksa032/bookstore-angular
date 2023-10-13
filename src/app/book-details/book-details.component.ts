@@ -73,7 +73,8 @@ export class BookDetailsComponent implements OnInit {
     }
   }
 
-  logout() {
+  logout(){
     this.userService.logout()
+    this.router.navigate(['/'])
   }
 }
