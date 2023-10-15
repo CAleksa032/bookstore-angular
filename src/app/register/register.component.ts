@@ -62,8 +62,7 @@ export class RegisterComponent implements OnInit{
 
   isPasswordValid() {
     const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[.@$!%*#?&])[A-Za-z][\w.@$!%*#?&]{6,11}$/;
-    //return passwordPattern.test(this.password);
-    return true
+    return passwordPattern.test(this.password);
   }
 
   isFormValid(): boolean {
